@@ -720,4 +720,35 @@ console.log(text);`,
     websiteUrl: 'https://pexafy.com',
     npmUrl: 'https://www.npmjs.com/package/pexafy-ai-sdk',
   },
+  {
+    slug: 'pulse-verity',
+    name: 'Pulse Verity Index',
+    description:
+      'Read crypto index price records and verify their complete signed record before returning a result. Includes observation time and quality metadata; signature verification alone does not establish freshness.',
+    packageName: 'ai-sdk-tool-pulse-verity',
+    tags: ['crypto', 'price-index', 'verification', 'mcp'],
+    apiKeyEnvName: 'PULSE_API_KEY',
+    installCommand: {
+      pnpm: 'pnpm add ai-sdk-tool-pulse-verity',
+      npm: 'npm install ai-sdk-tool-pulse-verity',
+      yarn: 'yarn add ai-sdk-tool-pulse-verity',
+      bun: 'bun add ai-sdk-tool-pulse-verity',
+    },
+    codeExample: `import { generateText, gateway, isStepCount } from 'ai';
+import { pulseVerity } from 'ai-sdk-tool-pulse-verity';
+
+// Server-side Node.js 24+. Set PULSE_API_KEY and AI_GATEWAY_API_KEY.
+const { text } = await generateText({
+  model: gateway('openai/gpt-5-mini'),
+  prompt: 'Read and verify a BTC index record. Report its observation time and quality; do not assume it is fresh.',
+  tools: { verified_price: pulseVerity() },
+  stopWhen: isStepCount(2),
+  maxRetries: 0,
+});
+console.log(text);`,
+    docsUrl: 'https://pulsebet.github.io/pulse-verity/ai-sdk/',
+    apiKeyUrl: 'https://thepulse.markets/developers',
+    websiteUrl: 'https://thepulse.markets/developers',
+    npmUrl: 'https://www.npmjs.com/package/ai-sdk-tool-pulse-verity',
+  },
 ];
